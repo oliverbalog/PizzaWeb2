@@ -1,0 +1,13 @@
+{
+    "name": "oliverbalog/pizza-web",
+    "description": "Assesmnent for Web Development 2 course.",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\": "database/"
+        },
+        "files": [
+            "app/Helpers/helpers.php"
+        ]
+    }
+}
