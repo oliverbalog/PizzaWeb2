@@ -25,7 +25,7 @@ include(APP_ROOT . "/resources/views/layouts/header.php");
                             Bejelentkezés
                         </button>
                         <p class="text-sm font-light text-gray-500">
-                            Még nem regisztrált? <a href="<?php echo route($routes->get('register')) ?>" class="font-medium text-primary-600 hover:underline">Sign up</a>
+                            Még nem regisztrált? <a href="<?php echo route($routes->get('register')) ?>" class="font-medium text-primary-600 hover:underline">Regisztráció</a>
                         </p>
                     </form>
                 </div>
