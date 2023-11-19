@@ -54,7 +54,7 @@
                                     <span class="block text-sm font-medium text-gray-500 truncate">
                                         <?php echo auth()->user()->email ?>
                                     </span>
-                                    <span class="block text-sm font-medium text-gray-500 truncate">Role:
+                                    <span class="block text-sm font-medium text-gray-500 truncate">Szerepkör:
                                         <?php echo auth()->user()->role ?>
                                     </span>
                                 </div>
@@ -77,6 +77,51 @@
                                     clip-rule="evenodd"></path>
                             </svg>
                         </button>
+                    </div>
+                    <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
+                        id="navbar-sticky">
+                        <ul
+                            class="flex flex-col p-2 mt-2 border border-zinc-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 dark:text-white ">
+                            <?php foreach (App\Models\Menu::mapMenus() as $menu): ?>
+                                <?php if ($menu['children_count'] && $menu['children']): ?>
+                                    <button type="button" class="flex space-x-2" id="order-menu-button" aria-expanded="false"
+                                        data-dropdown-toggle="order-dropdown" data-dropdown-placement="bottom">
+                                        <span class="text-xl font-medium block rounded">
+                                            <?php echo $menu['name'] ?>
+                                        </span>
+                                        <svg class="w-6 h-6 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M19 9l-7 7-7-7"></path>
+                                        </svg>
+                                    </button>
+                                    <!-- Dropdown menu -->
+                                    <div class="z-50 hidden my-4 text-base font-medium list-none bg-white divide-y divide-gray-100 rounded shadow"
+                                        id="order-dropdown">
+                                        <?php foreach ($menu['children'] as $sub): ?>
+                                            <?php if (\App\Helpers\Auth::role() !== 'admin' && in_array($sub['route'], ['orders.chart'])): ?>
+                                            <?php else: ?>
+                                                <ul class="py-1" aria-labelledby="order-menu-button-<?php echo $sub['id'] ?>">
+                                                    <li>
+                                                        <a href="<?php echo route($routes->get($sub['route'])) ?>"
+                                                            class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                                                            <?php echo $sub['name'] ?>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    </div>
+                                <?php else: ?>
+                                    <li>
+                                        <a href="<?php echo route($routes->get($menu['route'])) ?>"
+                                            class="block text-xl py-2 pl-3 pr-4 rounded md:p-0 <?php echo isRoute($routes->get($menu['route'])) ? 'text-white bg-zinc-700 md:bg-transparent md:text-white-700' : 'text-gray-700 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700' ?>">
+                                            <?php echo $menu['name'] ?>
+                                        </a>
+                                    </li>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                        </ul>
                     </div>
                 </div>
             </nav>
