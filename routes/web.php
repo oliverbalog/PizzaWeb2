@@ -1,6 +1,8 @@
 <?php
+use App\Controllers\ApiOrderController;
 use App\Controllers\AuthenticateController;
 use App\Controllers\HomeController;
+use App\Controllers\PizzaController;
 use App\Controllers\RegisterController;
 use App\Helpers\Route;
 use App\Helpers\RouteCollection;
@@ -16,5 +18,15 @@ $routes->add('logout', Route::get('/logout', [AuthenticateController::class, 'lo
 
 $routes->add('register', Route::get('/register', [RegisterController::class, 'index']));
 $routes->add('register.post', Route::post('/register/post', [RegisterController::class, 'register']));
+
+$routes->add('pizzas.index', Route::get('/pizzas', [PizzaController::class, 'index']));
+$routes->add('pizzas.create', Route::get('/pizzas/create', [PizzaController::class, 'create']));
+$routes->add('pizzas.store', Route::post('/pizzas/store', [PizzaController::class, 'store']));
+
+$routes->add('api.orders.index', Route::get('/api/orders', [ApiOrderController::class, 'index']));
+$routes->add('api.orders.store', Route::post('/api/orders/store', [ApiOrderController::class, 'store']));
+$routes->add('api.orders.update', Route::put('/api/orders/update', [ApiOrderController::class, 'update']));
+$routes->add('api.orders.delete', Route::put('/api/orders/delete', [ApiOrderController::class, 'delete']));
+
 
 ?>

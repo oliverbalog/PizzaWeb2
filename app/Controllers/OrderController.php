@@ -8,6 +8,7 @@ use App\Models\Order;
 use App\Models\Pizza;
 use App\Models\Category;
 use Exception;
+use PDOException;
 use TCPDF;
 
 class OrderController extends Controller
