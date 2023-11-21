@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Helpers\RouteCollection;
 use App\Models\Pizza;
+use Exception;
 
 class PizzaController extends Controller
 {
@@ -63,7 +64,7 @@ class PizzaController extends Controller
 
 		Pizza::query()->insert($validated);
 
-		return redirect(route($this->routes->get('pizzas.index')), 'Successfully created');
+		return redirect(route($this->routes->get('pizzas.index')), 'Sikeresen hozzáadva!');
 	}
 
 	/**

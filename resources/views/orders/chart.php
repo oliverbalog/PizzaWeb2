@@ -1,9 +1,9 @@
 <?php
 include(APP_ROOT . "/resources/views/layouts/header.php");
 ?>
-    <section class="w-full px-6 pb-12 antialiased bg-white">
+    <section class="w-full px-6 pb-12 antialiased bg-black text-white">
         <div class="px-10 py-24 mx-auto max-w-7xl">
-            <h1 class="text-2xl font-semibold text-gray-700 mb-8">Orders chart</h1>
+            <h1 class="text-2xl font-semibold mb-8">Megrendelések</h1>
 
             <canvas id="chart"></canvas>
 
@@ -27,7 +27,7 @@ include(APP_ROOT . "/resources/views/layouts/header.php");
                 labels: labels.split('|'),
                 datasets: [{
                     axis: 'y',
-                    label: 'Orders',
+                    label: 'Megrendelések',
                     data: datas.split('|'),
                     fill: false,
                     borderWidth: 1,

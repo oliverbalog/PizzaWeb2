@@ -1,9 +1,9 @@
 <?php
 include(APP_ROOT . "/resources/views/layouts/header.php");
 ?>
-<section class="w-full px-6 pb-12 antialiased bg-white">
+<section class="w-full px-6 pb-12 antialiased bg-black dark:text-white">
     <div class="px-10 py-24 mx-auto max-w-7xl">
-        <h1 class="text-2xl font-semibold text-gray-700 mb-8">Pizza hozzáadása</h1>
+        <h1 class="text-2xl font-semibold mb-8">Pizza hozzáadása</h1>
 
 		<?php include_once APP_ROOT . '/resources/views/shared/errors.php' ?>
 
@@ -13,7 +13,7 @@ include(APP_ROOT . "/resources/views/layouts/header.php");
 
             <div class="flex justify-end mt-6">
                 <button type="submit" class="button">
-                    Create
+                    Hozzáad
                 </button>
             </div>
         </form>

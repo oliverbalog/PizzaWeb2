@@ -34,7 +34,7 @@ class ApiOrderController extends Controller
 
 		} catch(Exception $e) {
 			return $this->response([
-				'error' => 'Pizza name and amount is required'
+				'error' => 'A pizza neve és mennyisége kötelező'
 			], 400);
 		}
 
@@ -46,12 +46,12 @@ class ApiOrderController extends Controller
 			Order::query()->insert($order);
 		} catch(Exception $e) {
 			return $this->response([
-				'error' => 'Pizza with this name not found'
+				'error' => 'Nincs ilyen nevű pizza'
 			], 404);
 		}
 
 		return $this->response([
-			'status' => 'Order created',
+			'status' => 'Megrendelés hozzáadva',
 			'order' => $order
 		]);
 	}
@@ -72,7 +72,7 @@ class ApiOrderController extends Controller
 
 		} catch(Exception $e) {
 			return $this->response([
-				'error' => 'Pizza name and amount is required'
+				'error' => 'A pizza neve és mennnyisége kötelező'
 			], 400);
 		}
 
@@ -84,13 +84,13 @@ class ApiOrderController extends Controller
 			Order::query()->update($id, $order);
 		} catch(Exception $e) {
 			return $this->response([
-				'error' => 'Pizza with this name not found',
+				'error' => 'Nincs ilyen nevű pizza',
 				'sql' => $e->getMessage()
 			], 404);
 		}
 
 		return $this->response([
-			'status' => 'Order updated',
+			'status' => 'Megrendelés frissítve',
 			'order' => $order
 		]);
 	}
@@ -107,7 +107,7 @@ class ApiOrderController extends Controller
 
 		} catch(Exception $e) {
 			return $this->response([
-				'error' => 'id field is required'
+				'error' => 'ID kötelező'
 			], 400);
 		}
 
@@ -115,12 +115,12 @@ class ApiOrderController extends Controller
 			Order::query()->delete($validated['id']);
 		} catch(Exception $e) {
 			return $this->response([
-				'error' => 'Order not found'
+				'error' => 'Nincs ilyen megrendelés'
 			], 404);
 		}
 
 		return $this->response([
-			'status' => 'Order deleted',
+			'status' => 'Megrendelés törölve',
 		]);
 	}
 
