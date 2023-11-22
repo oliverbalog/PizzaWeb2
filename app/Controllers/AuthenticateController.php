@@ -51,7 +51,7 @@ class AuthenticateController extends Controller
 
 			// User by email not found or password does not match
 			if(!$user || !password_verify($validated['password'], $user['password'])) {
-				Input::throwError('Email or password is incorrect');
+				Input::throwError('Nincs ilyen felhasználó ezzel az e-mail címmel és jelszóval');
 			}
 
 			Auth::setSession($user);

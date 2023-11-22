@@ -8,6 +8,7 @@ use App\Models\Order;
 use App\Models\Pizza;
 use App\Models\Category;
 use Exception;
+use PDOException;
 use TCPDF;
 
 class OrderController extends Controller
@@ -161,7 +162,7 @@ class OrderController extends Controller
 
             if (!$pizza || !$order) {
                 return $this->view('export', [
-                    'errors' => 'Pizza not found'
+                    'errors' => 'Nincs ilyen pizza'
                 ]);
             }
 
@@ -176,13 +177,13 @@ class OrderController extends Controller
 
             // set document information
             $pdf->SetCreator(PDF_CREATOR);
-            $pdf->SetAuthor('Pizza-php');
-            $pdf->SetTitle('Order');
-            $pdf->SetSubject('Downloaded order from Pizza-php');
-            $pdf->SetKeywords('TCPDF, PDF, Web-programozás II, Order, Pizza');
+            $pdf->SetAuthor('Webprogramozás 2 pizza adatbázis');
+            $pdf->SetTitle('Megrendelés');
+            $pdf->SetSubject('Exportált megrendelés');
+            $pdf->SetKeywords('TCPDF, PDF, Web-programozás II, Megrendelés, Pizza');
 
             // set default header data
-            $pdf->SetHeaderData("images/pizza.png", 25, "Exported order", "Exported from Pizzas-php\n" . date('Y.m.d', time()));
+            $pdf->SetHeaderData("images/pizza.png", 25, "Megrendelés", "\n" . date('Y.m.d', time()));
 
             // set header and footer fonts
             $pdf->setHeaderFont(array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
@@ -215,13 +216,13 @@ class OrderController extends Controller
                         <table class="w-full text-sm text-left text-gray-500">
                             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                                 <tr>
-                                    <th scope="col" class="py-3 px-6">Pizza name</th>
-                                    <th scope="col" class="py-3 px-6">Category</th>
-                                    <th scope="col" class="py-3 px-6">Vegetarian</th>
-                                    <th scope="col" class="py-3 px-6">Price</th>
-                                    <th scope="col" class="py-3 px-6">Amount</th>
-                                    <th scope="col" class="py-3 px-6">Ordered</th>
-                                    <th scope="col" class="py-3 px-6">Delivered</th>
+                                    <th scope="col" class="py-3 px-6">Pizza neve</th>
+                                    <th scope="col" class="py-3 px-6">Kategória</th>
+                                    <th scope="col" class="py-3 px-6">Vegetáriánus?</th>
+                                    <th scope="col" class="py-3 px-6">Ár</th>
+                                    <th scope="col" class="py-3 px-6">Mennyiség</th>
+                                    <th scope="col" class="py-3 px-6">Megrendelve</th>
+                                    <th scope="col" class="py-3 px-6">Kiszállítva</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -237,11 +238,11 @@ class OrderController extends Controller
             ';
             if ($pizza['is_vegetarian'] == 0)
                 $html .= '
-                                            Not vegeterian
+                                            Nem vegetáriánus
                 ';
             else
                 $html .= '
-                                            Vegeterian
+                                            Vegetáriánus
                 ';
             $html .= '
                                         </span>
@@ -275,7 +276,7 @@ class OrderController extends Controller
             ]);
         }
 
-        return redirect(route($this->routes->get('index')), 'Successfully exported');
+        return redirect(route($this->routes->get('index')), 'Sikeres exportálás');
     }
 
     public function chart()
