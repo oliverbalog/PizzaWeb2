@@ -5,8 +5,10 @@ namespace App\Models;
 class Order extends Model
 {
 	protected $table = 'orders';
+	protected $primaryKey = 'id';
 
 	protected $fillable = [
+		'id',
 		'pizza_name',
 		'amount',
 		'ordered_at',
